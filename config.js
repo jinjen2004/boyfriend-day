@@ -2,11 +2,12 @@
 const HIS_NAME = "JiaJia";
 
 const TIPS = [
-    `${HIS_NAME} is the cutest person in the world`,
-    "Snacks increase his happiness by 200%",
-    `Give ${HIS_NAME} a kiss and see what happens! `,
-    `${HIS_NAME} is my Mega Knight, he jumped into my heart`,
-    `${HIS_NAME} is my favorite card, a legendary cant compare`,
+    "",
+    "",
+    "",
+    "You’re stronger than a max-level P.E.K.K.A. in my arena.",
+    "Mega Knight never skips leg day",
+    "You're my Legendary card in a deck full of Commons~",
     "Had me at Zap and I've been stunned ever since!",
 ];
 
@@ -44,3 +45,14 @@ const LETTER = [
   "Second paragraph of your letter.",
   "Last paragraph of your letter. Happy Boyfriend Day!",
 ];
+
+// Replace emojis with your own pictures. Leave "" to keep the emoji.
+const ICONS = {
+  crown: "",
+  chest: "",
+  chestOpen: "",
+  tabChests: "",
+  tabCards: "",
+  tabBattle: "",
+  tabUs: "",
+};

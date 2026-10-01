@@ -22,7 +22,8 @@ symbols.forEach(symbol => {
 function flip(tile) {
   if (locked || tile.classList.contains("up")) return;
   tile.classList.add("up");
-  tile.textContent = tile.dataset.symbol;
+  playSound("flip");
+  tile.innerHTML = symbolHtml(tile.dataset.symbol);
 
   if (!first) { first = tile; return; }
 
@@ -34,9 +35,10 @@ function flip(tile) {
     tile.classList.add("done");
     first = null;
     matched++;
-    if (matched === MATCH_CARDS.length) win();
+    if (matched === MATCH_CARDS.length) win(); else playSound("match");
   } else {
     locked = true;
+    playSound("wrong");
     const a = first;
     first = null;
     setTimeout(() => {
@@ -47,6 +49,8 @@ function flip(tile) {
 }
 
 function win() {
+  playSound("win");
+  Music.pauseFor("win", 4000);
   statusBox.textContent = "👑 Victory in " + moves + " moves! Your letter:";
   letterEl.innerHTML = LETTER.map(p => "<p>" + p + "</p>").join("");
 }

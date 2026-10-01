@@ -1,7 +1,8 @@
 :root { --blue-dark:#0b2a5b; --blue:#1f5fd1; --gold:#ffc629; --gold-dark:#c78a00; --purple:#c23be0; }
 * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-html, body { min-height:100%; }
-body { font-family:'Lilita One','Trebuchet MS',sans-serif; color:#fff; background:radial-gradient(circle at top,var(--blue),var(--blue-dark)) fixed; }
+html { min-height:100%; background:var(--blue-dark) radial-gradient(circle at top,var(--blue),var(--blue-dark)) no-repeat; }
+body { min-height:100%; }
+body { font-family:'Lilita One','Trebuchet MS',sans-serif; color:#fff; }
 a { color:inherit; text-decoration:none; }
 
 .screen { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; }
@@ -13,7 +14,7 @@ h2 { font-size:1.8rem; text-shadow:0 2px 0 #000a; margin-bottom:8px; }
 .gold-btn:active { transform:translateY(6px); box-shadow:0 2px 0 var(--gold-dark); }
 
 .bar { width:min(80%,360px); height:26px; background:#0008; border:3px solid #000; border-radius:14px; overflow:hidden; margin:16px 0; }
-.bar-fill { height:100%; width:0; background:linear-gradient(var(--purple),#8a1fa8); }
+.bar-fill { height:100%; width:100%; transform:scaleX(0); transform-origin:left; will-change:transform; background:linear-gradient(var(--purple),#8a1fa8); }
 .tip { max-width:300px; min-height:4em; font-size:1.1rem; }
 
 .page { min-height:100vh; display:flex; flex-direction:column; }
@@ -48,3 +49,78 @@ h2 { font-size:1.8rem; text-shadow:0 2px 0 #000a; margin-bottom:8px; }
 .tile { font:inherit; font-size:1.8rem; aspect-ratio:1; color:#fff; background:#0b2a5bcc; border:3px solid var(--gold); border-radius:12px; cursor:pointer; }
 .tile.up { background:#c23be055; }
 .tile.done { background:#2a9d3f88; border-color:#fff; }
+
+.screen, .page { min-height:100vh; min-height:100dvh; }
+.topbar { min-height:56px; }
+.tabbar { min-height:72px; }
+button, a { touch-action:manipulation; }
+@keyframes fadein { from { opacity:0; } to { opacity:1; } }
+
+/* ---- Smooth page changes ---- */
+@view-transition { navigation: auto; }
+.topbar { view-transition-name: topbar; }
+.tabbar { view-transition-name: tabbar; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .2s; }
+@supports not (view-transition-name: a) {
+  .screen, .content { animation: fadein .18s ease-out; }
+}
+.leaving .screen, .leaving .content { opacity:0; transition:opacity .15s ease-in; }
+
+/* ---- Top bar extras ---- */
+.top-actions { display:flex; gap:8px; align-items:center; }
+.sound-btn { font:inherit; font-size:1.1rem; color:#fff; background:#ffffff22; border:3px solid #000; border-radius:10px; padding:3px 10px; cursor:pointer; }
+
+/* ---- Motion ---- */
+@keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+@keyframes glow { 0%,100% { box-shadow:0 8px 0 var(--gold-dark), 0 0 0 rgba(255,198,41,0); } 50% { box-shadow:0 8px 0 var(--gold-dark), 0 0 24px rgba(255,198,41,.85); } }
+@keyframes pop { 0% { transform:scale(.8); } 60% { transform:scale(1.08); } 100% { transform:scale(1); } }
+@keyframes wiggle { 0%,100% { transform:rotate(0); } 25% { transform:rotate(-5deg); } 75% { transform:rotate(5deg); } }
+@keyframes rise { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+.crown { animation:float 2.4s ease-in-out infinite; }
+.gold-btn:not(:active) { animation:glow 1.8s ease-in-out infinite; }
+.chest, .flipcard, .tile, .opt, .profile-btn, .sound-btn, .tabbar a { transition:transform .15s ease, background .2s ease, opacity .2s ease; }
+.chest.opened, .flipcard.flipped, .tile.up { animation:pop .25s ease-out; }
+.letter p { animation:rise .5s ease-out both; }
+.letter p:nth-child(2) { animation-delay:.15s; }
+.letter p:nth-child(3) { animation-delay:.3s; }
+.chest:active, .flipcard:active, .tile:active, .opt:active, .profile-btn:active, .sound-btn:active { transform:scale(.95); }
+
+@media (hover: hover) {
+  .chest:not(.opened):hover { animation:wiggle .4s ease-in-out; }
+  .flipcard:hover, .tile:hover, .opt:hover { transform:translateY(-3px) scale(1.03); }
+  .profile-btn:hover, .sound-btn:hover { transform:translateY(-2px); }
+  .tabbar a:hover { opacity:1; transform:translateY(-2px); }
+  .photos img { transition:transform .2s ease; }
+  .photos img:hover { transform:scale(1.04) rotate(-1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation:none !important; transition:none !important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation:none !important; }
+}
+
+/* ---- Image icons ---- */
+.icon-img { width:1em; height:1em; object-fit:contain; vertical-align:middle; pointer-events:none; }
+.crown .icon-img { width:5rem; height:5rem; }
+.chest .icon .icon-img { width:3rem; height:3rem; }
+.tabbar a .icon-img { width:1.7rem; height:1.7rem; display:block; margin:0 auto; }
+.tile .icon-img { width:70%; height:70%; }
+
+/* ---- Custom cursor (desktop only; images/cursor.png, 32x32 recommended, hotspot 16 16) ---- */
+body { cursor: url("images/cursor.png") 16 16, auto; }
+a, button, .chest, .flipcard, .tile, .opt { cursor: url("images/cursor.png") 16 16, pointer; }
+
+/* ---- Sizing: comfortable width, grids adapt to how much you add ---- */
+.content { width:100%; max-width:520px; margin:0 auto; }
+
+/* Cards: about 2 per row on a phone, more room on larger screens */
+.grid { grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); }
+.flipcard { min-height:90px; font-size:.95rem; }
+
+/* Us page photos: small squares that fill the row, however many you add */
+.photos { grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); }
+
+/* Memory game: a compact board */
+.board { max-width:340px; margin:12px auto; }
+.tile { font-size:1.4rem; }

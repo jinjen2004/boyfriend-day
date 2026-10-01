@@ -7,6 +7,7 @@ CARDS.forEach(card => {
   btn.innerHTML = front;
   btn.addEventListener("click", () => {
     const flipped = btn.classList.toggle("flipped");
+    playSound("flip");
     btn.innerHTML = flipped ? card.reason : front;
   });
   deck.appendChild(btn);
