@@ -3,20 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home</title>
+  <title>Chests</title>
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body data-tab="">
+<body data-tab="chests">
   <div class="page">
     <header class="topbar" id="topbar"></header>
     <main class="content">
-      <h2>Welcome, <span class="his-name"></span></h2>
-      <p>Pick a tab below.</p>
+      <h2>Chests</h2>
+      <p>Tap a chest to open it</p>
+      <div class="row" id="chests"></div>
+      <div class="box" id="reveal">Nothing opened yet.</div>
     </main>
     <nav class="tabbar" id="tabbar"></nav>
   </div>
   <script src="config.js"></script>
   <script src="shared.js"></script>
+  <script src="chests.js"></script>
 </body>
 </html>

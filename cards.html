@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Boyfriend Day!</title>
+  <title>Cards</title>
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <section class="screen">
-    <div class="crown">👑</div>
-    <h1>Hello, <span class="his-name"></span>!</h1>
-    <p class="sub">You've been challenged!</p>
-    <a class="gold-btn" href="loading.html">OPEN</a>
-  </section>
+<body data-tab="cards">
+  <div class="page">
+    <header class="topbar" id="topbar"></header>
+    <main class="content">
+      <h2>Why I love you</h2>
+      <p>Tap a card to reveal the reason</p>
+      <div class="grid" id="deck"></div>
+    </main>
+    <nav class="tabbar" id="tabbar"></nav>
+  </div>
   <script src="config.js"></script>
   <script src="shared.js"></script>
+  <script src="cards.js"></script>
 </body>
 </html>
