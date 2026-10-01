@@ -1,8 +1,12 @@
 // Background music. It plays only when nothing is "blocking" it.
 const Music = (() => {
-  const audio = new Audio("audio/bgm.mp3");   // put your music file here
+  // A page can pick its own song: <body data-music="audio/monkeys.mp3">
+  // Pages without one play the main song.
+  const TRACK = document.body.dataset.music || "audio/duck.mp3";
+  const VOLUME = 0.25;
+  const audio = new Audio(TRACK);
   audio.loop = true;
-  audio.volume = 0.25;
+  audio.volume = VOLUME;
 
   // Storage can be blocked, so never let it crash the page
   const store = {
@@ -13,8 +17,34 @@ const Music = (() => {
   const blockers = new Set();   // reasons the music is paused right now
   let started = store.get("bgmStarted") === "1";
   let broken = false;           // true if the file is missing
+  let fadeTimer = null;
 
-  const saved = parseFloat(store.get("bgmTime") || "0");
+  // Smoothly change the volume
+  function fadeTo(target, ms) {
+    clearInterval(fadeTimer);
+    const from = audio.volume;
+    const t0 = performance.now();
+    fadeTimer = setInterval(() => {
+      const t = Math.min((performance.now() - t0) / ms, 1);
+      audio.volume = from + (target - from) * t;
+      if (t >= 1) clearInterval(fadeTimer);
+    }, 50);
+  }
+  function fadeOut(ms) { fadeTo(0, ms); }
+
+  // Pages reload on every tab change, so remember where the song was
+  const prevTrack = store.get("bgmTrack");
+  const sameTrack = prevTrack === TRACK;
+  store.set("bgmTrack", TRACK);
+  const saved = sameTrack ? parseFloat(store.get("bgmTime") || "0") : 0;
+
+  // A different song than the last page fades in instead of starting loud
+  let needFadeIn = prevTrack !== null && !sameTrack;
+  if (needFadeIn) audio.volume = 0;
+  audio.addEventListener("playing", () => {
+    if (needFadeIn) { needFadeIn = false; fadeTo(VOLUME, 2500); }
+  });
+
   audio.addEventListener("loadedmetadata", () => {
     if (saved > 0 && saved < audio.duration) audio.currentTime = saved;
   });
@@ -39,6 +69,7 @@ const Music = (() => {
   function unblock(reason) { blockers.delete(reason); update(); }
   function pauseFor(reason, ms) { block(reason); setTimeout(() => unblock(reason), ms); }
 
+  // Browsers only allow sound after a tap, so the first tap starts the music
   if (!started) {
     document.addEventListener("pointerdown", () => {
       started = true;
@@ -52,6 +83,20 @@ const Music = (() => {
   });
   document.addEventListener("soundchange", update);
 
+  // Pages without a top bar (start, loading, credits) get a small mute button
+  if (!document.getElementById("topbar")) {
+    const btn = document.createElement("button");
+    btn.className = "sound-float";
+    btn.setAttribute("aria-label", "Toggle sound");
+    btn.textContent = isMuted() ? "🔇" : "🔊";
+    btn.addEventListener("click", () => {
+      setMuted(!isMuted());
+      btn.textContent = isMuted() ? "🔇" : "🔊";
+      document.dispatchEvent(new Event("soundchange"));
+    });
+    document.body.appendChild(btn);
+  }
+
   update();
-  return { block, unblock, pauseFor };
+  return { block, unblock, pauseFor, fadeOut };
 })();

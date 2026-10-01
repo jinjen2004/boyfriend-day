@@ -18,7 +18,7 @@ if (crownEl) crownEl.innerHTML = icon("crown", "👑");
 const topbar = document.getElementById("topbar");
 if (topbar) {
   topbar.innerHTML =
-    `<a href="home.html">${icon("crown", "👑")} ${HIS_NAME}</a>` +
+    `<a class="home-btn" href="home.html" aria-label="Home" title="Home">${icon("crown", "👑")}</a>` +
     `<span class="top-actions">` +
     `<button class="sound-btn" id="sound-btn" aria-label="Toggle sound">${isMuted() ? "🔇" : "🔊"}</button>` +
     `<a class="profile-btn" href="profile.html">Profile</a></span>`;
@@ -46,9 +46,9 @@ if (tabbar) {
     .join("");
 }
 
-// Tap sound for links and big buttons
+// Tap sound for links and big buttons (page scripts play their own sounds)
 document.addEventListener("click", e => {
-  if (e.target.closest(".tabbar a, .profile-btn, .gold-btn, .link")) playSound("tap");
+  if (e.target.closest(".tabbar a, .home-btn, .profile-btn, .gold-btn, .link, .menu-tile")) playSound("tap");
 });
 
 // Fallback for browsers without page transitions: fade out, then go

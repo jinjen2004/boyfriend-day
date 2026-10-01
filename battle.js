@@ -1,3 +1,13 @@
+// The wow sound plays when the puzzle is solved
+const wowSound = new Audio("audio/wow.mp3");
+wowSound.preload = "auto";
+wowSound.volume = 0.8;
+function playWow() {
+  if (isMuted()) return;
+  wowSound.currentTime = 0;
+  wowSound.play().catch(() => playSound("win"));   // missing file: use the fanfare instead
+}
+
 const board = document.getElementById("board");
 const statusBox = document.getElementById("statusbox");
 const letterEl = document.getElementById("letter");
@@ -49,7 +59,8 @@ function flip(tile) {
 }
 
 function win() {
-  playSound("win");
+  playWow();
+  launchFireworks(4000);
   Music.pauseFor("win", 4000);
   statusBox.textContent = "👑 Victory in " + moves + " moves! Your letter:";
   letterEl.innerHTML = LETTER.map(p => "<p>" + p + "</p>").join("");

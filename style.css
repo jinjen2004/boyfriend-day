@@ -111,16 +111,67 @@ button, a { touch-action:manipulation; }
 body { cursor: url("images/cursor.png") 16 16, auto; }
 a, button, .chest, .flipcard, .tile, .opt { cursor: url("images/cursor.png") 16 16, pointer; }
 
-/* ---- Sizing: comfortable width, grids adapt to how much you add ---- */
-.content { width:100%; max-width:520px; margin:0 auto; }
+/* ---- Start page: swirl, hint, credit ---- */
+@keyframes swirl {
+  0%   { transform:rotate(0) scale(1); opacity:1; }
+  50%  { transform:rotate(540deg) translateY(-30px) scale(1.25); opacity:1; }
+  100% { transform:rotate(1260deg) translateY(0) scale(0); opacity:0; }
+}
+.gold-btn.swirl { animation:swirl 1s cubic-bezier(.6,0,.4,1) forwards !important; pointer-events:none; }
+.screen.leaving-swirl > :not(.gold-btn) { opacity:0; transition:opacity .5s ease; }
+.hint { margin-top:22px; font-size:1rem; opacity:.85; }
+.credit { margin-top:18px; max-width:300px; font-size:.7rem; opacity:.6; }
+.sound-float { position:fixed; top:12px; right:12px; z-index:5; font:inherit; font-size:1.1rem; color:#fff; background:#ffffff22; border:3px solid #000; border-radius:10px; padding:3px 10px; cursor:pointer; }
 
-/* Cards: about 2 per row on a phone, more room on larger screens */
-.grid { grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); }
-.flipcard { min-height:90px; font-size:.95rem; }
+/* ---- Loading page: the "almost loaded" prank ---- */
+.meme { position:fixed; inset:0; z-index:10; display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:20px; text-align:center; background:#000c; }
+.meme.show { display:flex; animation:pop .25s ease-out; }
+.meme img { max-width:min(80%,320px); max-height:40vh; border:4px solid #fff; border-radius:12px; }
+.meme img + .face { display:none; }
+.meme .face { font-size:5rem; }
+.meme .mtext { font-family:Impact,'Lilita One',sans-serif; font-size:2rem; text-transform:uppercase; color:#fff; -webkit-text-stroke:2px #000; text-shadow:0 3px 0 #000; transform:rotate(-3deg); }
+@keyframes shake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-6px); } 75% { transform:translateX(6px); } }
+.bar.shake { animation:shake .3s ease-in-out 4; }
 
-/* Us page photos: small squares that fill the row, however many you add */
-.photos { grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); }
+/* ---- Credits link + page ---- */
+a.credit { display:block; text-decoration:underline; }
+.credits .box { max-width:480px; margin-bottom:16px; }
+.credits .box p { margin-bottom:10px; font-size:.9rem; line-height:1.4; }
 
-/* Memory game: a compact board */
-.board { max-width:340px; margin:12px auto; }
-.tile { font-size:1.4rem; }
+/* ---- Home page ---- */
+.banner { display:flex; align-items:center; gap:12px; text-align:left; background:#0b2a5bcc; border:4px solid var(--gold); border-radius:16px; padding:10px 14px; margin-bottom:18px; }
+.avatar { flex:none; width:56px; height:56px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; background:#0008; border:3px solid #000; border-radius:12px; }
+.avatar .icon-img { width:40px; height:40px; }
+.who-name { font-size:1.4rem; }
+.who-level { font-size:.95rem; color:var(--gold); }
+.hero-title { font-size:2rem; margin-bottom:14px; }
+.battle-btn { margin-bottom:20px; font-size:1.7rem; padding:12px 44px; }
+.menu { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:20px; }
+.menu-tile { display:flex; flex-direction:column; align-items:center; gap:2px; padding:14px 8px; background:#0b2a5bcc; border:3px solid var(--gold); border-radius:16px; transition:transform .15s ease; }
+.menu-icon { font-size:2.4rem; }
+.menu-icon .icon-img { width:3rem; height:3rem; }
+.menu-tile strong { font-size:1.2rem; font-weight:normal; }
+.menu-tile small { font-size:.8rem; opacity:.8; }
+.menu-tile:active { transform:scale(.96); }
+@media (hover: hover) { .menu-tile:hover { transform:translateY(-3px); } }
+.tipbox { background:#0008; border:3px solid #000; border-radius:14px; padding:12px; font-size:.95rem; line-height:1.4; }
+
+/* ---- Home button (crown, top left) ---- */
+.home-btn { display:flex; align-items:center; justify-content:center; min-width:44px; height:38px; padding:0 10px; font-size:1.3rem; background:linear-gradient(#ffd84d,var(--gold)); border:3px solid #000; border-radius:10px; box-shadow:0; transition:transform .15s ease; }
+.home-btn .icon-img { width:1.6rem; height:1.6rem; }
+.home-btn:active { transform:scale(.95); }
+@media (hover: hover) { .home-btn:hover { transform:translateY(-2px); } }
+
+/* ---- Cards, photos and game board: centered and compact ---- */
+.grid { grid-template-columns:repeat(2, 1fr); gap:10px; max-width:360px; margin:12px auto 0; }
+.flipcard { min-height:90px; padding:10px; font-size:.9rem; }
+.flipcard.flipped { font-size:.85rem; }
+.elixir { width:22px; height:22px; line-height:22px; font-size:.8rem; }
+.photos { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; max-width:360px; margin:12px auto 0; }
+.photos img { width:110px; height:110px; }
+.board { max-width:280px; margin:12px auto; gap:6px; }
+.tile { font-size:1.2rem; border-width:2px; }
+.tile .icon-img { width:60%; height:60%; }
+
+/* ---- Fireworks ---- */
+.fireworks { position:fixed; inset:0; width:100%; height:100%; z-index:20; pointer-events:none; }

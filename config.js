@@ -2,13 +2,16 @@
 const HIS_NAME = "JiaJia";
 
 const TIPS = [
-    "",
-    "",
-    "",
-    "You’re stronger than a max-level P.E.K.K.A. in my arena.",
+    "You're Electric...!",
+    "You barreled into my life like a Barbarian",
+    "Don't go horsin' around my Prince",
+    "You’re stronger than a max-level P.E.K.K.A. in my arena",
     "Mega Knight never skips leg day",
     "You're my Legendary card in a deck full of Commons~",
     "Had me at Zap and I've been stunned ever since!",
+    "You spin me around crazy like Valkyrie",
+    "FIREBALL",
+    "Did you just shoot a love dart, you Goblin!?",
 ];
 
 const PROFILE = [
