@@ -16,27 +16,35 @@ const TIPS = [
 
 const PROFILE = [
   ["Name", HIS_NAME],
-  ["Level", "23"],            // his age
-  ["Favorite card", "Hog Rider"],
-  ["Win condition", "Making me laugh"],
-  ["Most used emote", "😂"],
+  ["Level", "23"],
+  ["Height", "Taller than Mt. Everest"],
+  ["My Favorite card", "his debit card"],
+  ["Win condition", "Making me swoon"],
+  ["Favorite character in the entire world", "ME ofc"],
+  ["Account first created", "November 8th, 2025"],
 ];
 
-const CHESTS = [  // one song per chest
-  { title: "Chest 1", song: "Song title - Artist", text: "Your note for this song here.", link: "" },
-  { title: "Chest 2", song: "Song title - Artist", text: "Your note for this song here.", link: "" },
-  { title: "Chest 3", song: "Song title - Artist", text: "Your note for this song here.", link: "" },
+const CHESTS = [   // one song per chest
+  { title: "Chest 1", song: "Spring Snow", artist: "10cm",
+    text: "The song I thought of while getting to know you :3",
+    video: "https://youtu.be/SKWxqYvqmmA?si=9H6ElaeFkwvyueEO" },
+  { title: "Chest 2", song: "Honeybee", artist: "Olivia Rodrigo",
+    text: "Most recent song I be listening to that reminds me of you ;)",
+    video: "https://youtu.be/60rlboK94mE?si=Y2TYKiuRheaMsR1B" },
+  { title: "Chest 3", song: "Valentine", artist: "Laufey",
+    text: "Song that best describes how I felt while dating you :D",
+    video: "https://youtu.be/tyKu0uZS86Q?si=fzaLSwycPfWUnDad" },
 ];
 
 const CARDS = [  // 8 reasons
-  { name: "Reason 1", elixir: 1, reason: "Write your first reason here." },
-  { name: "Reason 2", elixir: 2, reason: "Write your second reason here." },
-  { name: "Reason 3", elixir: 3, reason: "Write your third reason here." },
-  { name: "Reason 4", elixir: 4, reason: "Write your fourth reason here." },
-  { name: "Reason 5", elixir: 5, reason: "Write your fifth reason here." },
-  { name: "Reason 6", elixir: 6, reason: "Write your sixth reason here." },
-  { name: "Reason 7", elixir: 7, reason: "Write your seventh reason here." },
-  { name: "Reason 8", elixir: 8, reason: "Write your eighth reason here." },
+  { name: "Reason 1", elixir: 1, reason: "You gave 100% effort when we first met" },
+  { name: "Reason 2", elixir: 2, reason: "Yummy biceps." },
+  { name: "Reason 3", elixir: 3, reason: "You have parts of my name in your name, it's destiny" },
+  { name: "Reason 4", elixir: 4, reason: "My personal chef" },
+  { name: "Reason 5", elixir: 5, reason: "The cutest patootie in the world" },
+  { name: "Reason 6", elixir: 6, reason: "My personal portable chinese translator" },
+  { name: "Reason 7", elixir: 7, reason: "Gentle, smart, hardworking, loving, goofy, handsome, determined, strong, Supercalifragilisticexpialidocious" },
+  { name: "Reason 8", elixir: 8, reason: "Mine." },
 ];
 
 // Memory game: each emoji becomes a matching pair (6 emojis = 12 tiles)
@@ -44,9 +52,16 @@ const MATCH_CARDS = ["👑", "🏹", "🧙", "🐷", "⚔️", "💙"];
 
 // The letter appears after the game is won. One string per paragraph.
 const LETTER = [
-  "First paragraph of your letter.",
-  "Second paragraph of your letter.",
-  "Last paragraph of your letter. Happy Boyfriend Day!",
+  "Congrats! You've overcome the most horrible gruesome battle of memory match game!!",
+  "Despite the goofy ah music in the background, this letter will be serious and intentional...",
+  "So jokes aside, I wanted to say that I see all your hard work and effort, and that I'm very proud of you.",
+  "I can't believe it's been nearly a year since we first met and starting dating, time flew by crazy fast didn't it?",
+  "I'm glad I met you and that you're the partner that I get to experience life with.",
+  "I wish you all the success and happiness in life, and I want to be there by your side to support you all the time.",
+  "If you're feeling down, come back here to remember how much you're loved.",
+  "You're amazing and I know you will be able to overcome any obstacles in life.",
+  "Above all, today's the day to show appreciation for one's partner so I wanted to make this website to show you how much I appreciate you!",
+  "Happy National Boyfriend Day, my dear <3",
 ];
 
 // Replace emojis with your own pictures. Leave "" to keep the emoji.

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video embed test</title>
+  <style>
+    body { font-family: sans-serif; max-width: 520px; margin: 0 auto; padding: 16px; line-height: 1.4; }
+    iframe { width: 100%; aspect-ratio: 16/9; border: 0; margin-bottom: 18px; }
+    code { background: #eee; padding: 2px 4px; }
+  </style>
+</head>
+<body>
+  <h1>Video embed test</h1>
+  <p>This page is open at: <code id="where"></code></p>
+  <p>If you see <code>file:</code> at the start, open it with Live Server instead.</p>
+
+  <h3>Spring Snow</h3>
+  <iframe src="https://www.youtube.com/embed/SKWxqYvqmmA" title="Spring Snow"
+    allow="encrypted-media; picture-in-picture; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <h3>Honeybee</h3>
+  <iframe src="https://www.youtube.com/embed/60rlboK94mE" title="Honeybee"
+    allow="encrypted-media; picture-in-picture; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <h3>Valentine</h3>
+  <iframe src="https://www.youtube.com/embed/tyKu0uZS86Q" title="Valentine"
+    allow="encrypted-media; picture-in-picture; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <h3>Spring Snow (privacy-enhanced mode)</h3>
+  <iframe src="https://www.youtube-nocookie.com/embed/SKWxqYvqmmA" title="Spring Snow, privacy-enhanced"
+    allow="encrypted-media; picture-in-picture; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <script>document.getElementById("where").textContent = location.href;</script>
+</body>
+</html>
