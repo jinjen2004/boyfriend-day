@@ -1,4 +1,8 @@
 const deck = document.getElementById("deck");
+
+// Start loading the surprise image now so it's ready the moment it's needed
+if (typeof CARDS_SURPRISE !== "undefined" && CARDS_SURPRISE) { new Image().src = CARDS_SURPRISE; }
+
 const seen = new Set();       // which cards have been flipped at least once
 let surpriseDone = false;
 
