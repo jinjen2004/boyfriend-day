@@ -55,7 +55,7 @@ const LETTER = [
   "Congrats! You've overcome the most horrible gruesome battle of memory match game!!",
   "Despite the goofy ah music in the background, this letter will be serious and intentional...",
   "So jokes aside, I wanted to say that I see all your hard work and effort, and that I'm very proud of you.",
-  "I can't believe it's been nearly a year since we first met and starting dating, time flew by crazy fast didn't it?",
+  "I can't believe it's been nearly a year since we first met and started dating, time flew by crazy fast didn't it?",
   "I'm glad I met you and that you're the partner that I get to experience life with.",
   "I wish you all the success and happiness in life, and I want to be there by your side to support you all the time.",
   "If you're feeling down, come back here to remember how much you're loved.",
@@ -74,3 +74,32 @@ const ICONS = {
   tabBattle: "",
   tabUs: "",
 };
+
+// ===== Photos and surprises =====
+// Us page: hover text (on a phone, tap the photo). Add or remove lines freely.
+const US_PHOTOS = [
+  { src: "images/us1.png", caption: "(10/11/25) First Meetup Flowers" },
+  { src: "images/us2.png", caption: "(11/4/25) First Package Sent to my Dorms" },
+  { src: "images/us3.png", caption: "(11/8/25) Flowers before Confession" },
+  { src: "images/us4.png", caption: "(11/14/25) Asian Shakespeare: i made japanese poem for Jia" },
+  { src: "images/us5.png", caption: "(11/29/25) First time holding hands EEEKKK" },
+  { src: "images/us6.png", caption: "(12/22/25) American Dream Mall Date, so aesthetic" },
+  { src: "images/us7.png", caption: "(12/23/25) First Christmas Present Exchange!" },
+  { src: "images/us8.png", caption: "(1/6/26) YUMMMM" },
+  { src: "images/us9.png", caption: "(1/9/26) Artechouse and Jia's fav Arcteryx" },
+  { src: "images/us10.png", caption: "(1/31/26) I said YESSS!" },
+  { src: "images/us11.png", caption: "(2/14/26) What a nice view" },
+  { src: "images/us12.png", caption: "(4/18/26) Okay Chef, I see you" },
+  { src: "images/us13.png", caption: "(5/17/26) Graduation Flowers from Jia" },
+  { src: "images/us14.png", caption: "(5/30/26) You're the Moon to my Sun" },
+  { src: "images/us15.png", caption: "(5/30/26) New Balance Twins!" },
+  { src: "images/us16.png", caption: "(6/13/26) Governor Island Picnic hehe" },
+  { src: "images/us17.png", caption: "(6/14/26) Good vibes only for Jia" },
+  { src: "images/us18.png", caption: "(8/8/26) Just a man and a beautiful nyc sunset" },
+];
+// Pops up on the side of the Us page
+const HONORABLE = { src: "images/us19.png", caption: "(10/2/26) Huge pretty flowers sent to my house" };
+// Photo on the right side of the profile page
+const PROFILE_PHOTO = "images/profile.png";
+// Slides in from the left after every card on the Cards page has been flipped
+const CARDS_SURPRISE = "images/hidden.png";
